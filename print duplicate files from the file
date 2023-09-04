@@ -1,0 +1,5 @@
+#!/bin/bash
+
+file="files.txt"
+
+sort "$file" | uniq -d
