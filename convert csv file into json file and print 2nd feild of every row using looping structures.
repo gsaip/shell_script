@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Input CSV file
+csv_file="input.csv"
+
+# Output JSON file
+json_file="output.json"
+
+# Initialize the JSON data array
+echo "[" > "$json_file"
+
+# Loop through each line in the CSV file
+while IFS=, read -r field1 field2 field3; do
+    # Skip the header row (if present)
+    if [ "$field1" != "Header1" ]; then
+        # Extract the second field (field2) and print it
+        echo "Second Field: $field2"
+
+        # Create a JSON object for the current line and append it to the JSON file
+        echo "{\"Field1\": \"$field1\", \"Field2\": \"$field2\", \"Field3\": \"$field3\"}," >> "$json_file"
+    fi
+done < "$csv_file"
+
+# Remove the trailing comma from the last JSON object
+sed -i '$ s/,$//' "$json_file"
+
+# Close the JSON array
+echo "]" >> "$json_file"
+
+echo "Conversion and printing complete.
