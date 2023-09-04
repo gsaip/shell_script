@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# File to check
+file_path="path\of\the\file"
+
+# Check if the file exists
+if [ -e "$file_path" ]; then
+    echo "File exists."
+else
+    echo "File does not exist."
+fi
